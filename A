@@ -1,0 +1,27 @@
+void insertNodeLevelOrder(T value) {
+    if (root == null) {
+      root = TreeNode(value);
+      return;
+    }
+
+    List<TreeNode<T>?> queue = [];
+    queue.add(root);
+
+    while (queue.isNotEmpty) {
+      TreeNode<T>? current = queue.removeAt(0);
+
+      if (current?.left == null) {
+        current?.left = TreeNode(value);
+        return;
+      } else {
+        queue.add(current?.left);
+      }
+
+      if (current?.right == null) {
+        current?.right = TreeNode(value);
+        return;
+      } else {
+        queue.add(current?.right);
+      }
+    }
+  }
