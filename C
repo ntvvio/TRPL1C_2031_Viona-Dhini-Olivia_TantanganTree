@@ -1,0 +1,55 @@
+  void inorderIterative(TreeNode<T>? node) {
+    if (node == null) return;
+    List<TreeNode<T>?> stack = [];
+    TreeNode<T>? current = node;
+
+    while (current != null || stack.isNotEmpty) {
+      while (current != null) {
+        stack.add(current);
+        current = current.left;
+      }
+
+      current = stack.removeLast();
+      stdout.write("${current!.nodeValue} ");
+      current = current!.right;
+    }
+    print("");
+  }
+
+  void preorderIterative(TreeNode<T>? node) {
+    if (node == null) return;
+    List<TreeNode<T>?> stack = [];
+    stack.add(node);
+    while (stack.isNotEmpty) {
+      TreeNode<T>? current = stack.removeLast();
+      stdout.write("${current!.nodeValue} ");
+      if (current.right != null) {
+        stack.add(current.right);
+      }
+      if (current.left!= null) {
+        stack.add(current.left);
+      }
+    }
+    print("");
+  }
+
+  void postorderIterative(TreeNode<T>? node) {
+    if (node == null) return;
+    List<TreeNode<T>?> stack1 = [];
+    List<TreeNode<T>?> stack2 = [];
+    stack1.add(node);
+    while (stack1.isNotEmpty) {
+      TreeNode<T>? current = stack1.removeLast();
+      stack2.add(current);
+      if (current!.left!= null) {
+        stack1.add(current!.left);
+      }
+      if (current!.right!= null) {
+        stack1.add(current!.right);
+      }      
+    }
+    while (stack2.isNotEmpty) {
+      stdout.write("${stack2.removeLast()!.nodeValue} ");      
+    }
+    print("");
+  }
