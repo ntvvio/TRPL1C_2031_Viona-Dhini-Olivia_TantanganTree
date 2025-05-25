@@ -1,0 +1,33 @@
+void insertNodeWithTarget(T value, T target) {
+    if (root == null) {
+      root = TreeNode(value);
+      return;
+    }
+
+    List<TreeNode<T>?> queue = [];
+    queue.add(root);
+
+    while (queue.isNotEmpty) {
+      TreeNode<T>? current = queue.removeAt(0);
+
+      if (current?.nodeValue == target) {
+        if (current?.left == null) {
+          current?.left = TreeNode(value);
+          return;
+        }
+        else if (current?.right == null) {
+          current?.right = TreeNode(value);
+          return;
+        }
+      }
+
+      if (current?.left != null) {
+        queue.add(current?.left);
+      }
+      if (current?.right != null) {
+        queue.add(current?.right);
+      }
+    }
+
+    insertNodeLevelOrder(value);
+  }
